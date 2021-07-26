@@ -1,15 +1,21 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Posttodo = () =>{
+const Posttodo = ({todos, setTodos}) =>{
+
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('javascript');
     const [content, setContent] = useState('');
 
     const handleSubmit = event => {
-        event.preventDefault();
-        const todopost = {description, category, content};
-        console.log(todopost);
+        event.preventDefault()
+        const todoLength = todos.length
+        const newId = todoLength === 0 ? 1:todos[todoLength-1].id+1
+        const todopost = {description: description, category: category, content: content, id: newId}
+        const newTodos = [...todos, todopost]
+        setTodos(newTodos)
+        setDescription('')
+        setCategory('javascript')
+        setContent('')
     }
 
     return(
