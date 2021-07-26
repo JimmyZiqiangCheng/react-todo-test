@@ -6,6 +6,8 @@ import {
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Todo from './components/Todo';
+import Todotable from './components/Todotable';
+import './App.css';
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
         </div>
       </Router>
     </>
-  );
+  )
 }
 
 export default App;

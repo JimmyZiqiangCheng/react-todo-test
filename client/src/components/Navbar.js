@@ -2,8 +2,10 @@ import {Link} from 'react-router-dom';
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <Link to='/todo'>Todo</Link>
-            <Link to='/about'>About</Link>
+            <div className="link">
+                <Link to='/todo'>Todo</Link>
+                <Link to='/about'>About</Link>
+            </div>
         </nav>
     )
 }
