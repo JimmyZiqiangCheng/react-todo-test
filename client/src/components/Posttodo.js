@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Posttodo = ({todos, setTodos}) =>{
+const Posttodo = ({todos, setUpdatedNeeded}) =>{
 
     // states store each field of a todo item
     const [description, setDescription] = useState('');
@@ -13,11 +13,17 @@ const Posttodo = ({todos, setTodos}) =>{
         const todoLength = todos.length;
         const newId = todoLength === 0 ? 1:todos[todoLength-1].id+1;
         const todopost = {description: description, category: category, content: content, id: newId};
-        const newTodos = [...todos, todopost];
-        setTodos(newTodos);
-        setDescription('');
-        setCategory('javascript');
-        setContent('');
+        const url = 'http://localhost:8000/todos';
+
+        fetch(url,{
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body: JSON.stringify(todopost)
+        }).then(()=>{
+            console.log("new todo added!");
+        })
+
+        setUpdatedNeeded(true);
     }
 
     return(

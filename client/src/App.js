@@ -6,6 +6,7 @@ import {
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Todo from './components/Todo';
+import TodoDetail from './components/TodoDetail';
 import './App.css';
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route exact path = "/about">
              <About />
+            </Route>
+            <Route exact path = "/todos/:id">
+             <TodoDetail />
             </Route>
           </Switch>
           </div>        

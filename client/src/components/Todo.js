@@ -10,12 +10,18 @@ const Todo = () =>{
     // check if it is in pending state
     const [isPending, setIsPending] = useState(true);
 
+    // check if todos has been updated
+    const [updateNeeded, setUpdatedNeeded] = useState(false);
+
+    // url for the json endpoint
+    const url = 'http://localhost:8000/todos';
+
     // fetch data from json server
     const getTodos = async() =>{
         try{
-            const res = await fetch('http://localhost:8000/todos');
+            const res = await fetch(url);
             const data = await res.json();
-            setTodos(data);
+            setTodos(data); 
             setIsPending(false);
         }catch (err){
             console.log(err.message);
@@ -25,13 +31,14 @@ const Todo = () =>{
     // fetch todo items from server on first rendering
     useEffect(()=> {
         getTodos();
-    },[])
+        setUpdatedNeeded(false);
+    },[updateNeeded]);
 
     return(
         <>
-            <Posttodo todos={todos} setTodos={setTodos}/>
+            <Posttodo todos={todos} setUpdatedNeeded={setUpdatedNeeded}/>
             {isPending && <div>Loading...</div>}
-            {todos && <Todotable todos={todos} setTodos={setTodos}/>}
+            {todos && <Todotable todos={todos} setUpdatedNeeded={setUpdatedNeeded}/>}
         </>
     );
 }

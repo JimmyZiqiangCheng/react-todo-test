@@ -1,10 +1,16 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-const Todotable = ({todos, setTodos}) => {
+const Todotable = ({todos, setUpdatedNeeded}) => {
     
     const deleteTodo = id => {
-        const newTodos = todos.filter(todos => todos.id !== id);
-        setTodos(newTodos);
+        const url = `http://localhost:8000/todos/${id}`;
+        fetch(url,{
+            method:'DELETE',
+        }).then(()=>{
+            console.log("new todo deleted!");
+        })
+        setUpdatedNeeded(true);
     }
 
     return (
@@ -20,7 +26,7 @@ const Todotable = ({todos, setTodos}) => {
                 <tbody>
                     {todos.map((todo) =>(
                         <tr key = {todo.id}>
-                            <td>{todo.description}</td>
+                            <Link to={`/todos/${todo.id}`}> <td>{todo.description}</td> </Link>
                             <td>{todo.category}</td>
                             <td>
                                 <button
