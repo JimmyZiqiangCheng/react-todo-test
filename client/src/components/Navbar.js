@@ -7,7 +7,7 @@ const Navbar = () => {
                 <Link to='/about'>About</Link>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar;

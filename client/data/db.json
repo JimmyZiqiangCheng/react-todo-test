@@ -1,0 +1,16 @@
+{
+    "todos": [
+        {
+            "description": "1st todo",
+            "category": "css",
+            "content": "content for 1st todo",
+            "id": 1
+        },
+        {
+            "description": "2st todo",
+            "category": "javascript",
+            "content": "content for 2st todo",
+            "id": 2
+        }
+    ]
+}

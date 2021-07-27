@@ -3,8 +3,8 @@ import React from "react";
 const Todotable = ({todos, setTodos}) => {
     
     const deleteTodo = id => {
-        const newTodos = todos.filter(todos => todos.id !== id)
-        setTodos(newTodos)
+        const newTodos = todos.filter(todos => todos.id !== id);
+        setTodos(newTodos);
     }
 
     return (
@@ -18,7 +18,7 @@ const Todotable = ({todos, setTodos}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {todos.length !== 0 && todos[0].id !== null && todos.map((todo) =>(
+                    {todos.map((todo) =>(
                         <tr key = {todo.id}>
                             <td>{todo.description}</td>
                             <td>{todo.category}</td>
@@ -34,7 +34,7 @@ const Todotable = ({todos, setTodos}) => {
                 </tbody>
             </table>
         </>
-    )
+    );
 }
 
 export default Todotable;
