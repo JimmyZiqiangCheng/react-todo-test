@@ -1,6 +1,10 @@
 # react-todo-test
 This is a simple react todo app with a PostgreSQL database. I will write down all the problems I enountered working on this project here.
 
+## how to run
+*react app: npm start
+*json server: npx json-server --watch data/db.json --port 8000
+
 ## time spent
 * roughly 8-10 hours
 * spent quite some time setting up the environment (had to use vpn in China)
