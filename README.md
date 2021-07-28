@@ -2,7 +2,8 @@
 This is a simple react todo app with a PostgreSQL database. I will write down all the problems I enountered working on this project here.
 
 ## time spent
-roughly 6-7 hours
+* roughly 8-10 hours
+* spent quite some time setting up the environment (had to use vpn in China)
 
 ## issues I faced:
 * on submitting a form, is it prefered to use "onClick" on a button or "onSubmit" on the whole form?
