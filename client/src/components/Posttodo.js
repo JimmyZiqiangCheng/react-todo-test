@@ -22,7 +22,9 @@ const Posttodo = ({todos, setUpdatedNeeded}) =>{
         }).then(()=>{
             console.log("new todo added!");
         })
-
+        setDescription('');
+        setCategory('javascript');
+        setContent('');
         setUpdatedNeeded(true);
     }
 

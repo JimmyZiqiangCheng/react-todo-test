@@ -1,15 +1,15 @@
 {
   "todos": [
     {
-      "description": "1st todo",
-      "category": "css",
-      "content": "content for 1st todo",
+      "description": "item1",
+      "category": "javascript",
+      "content": "content1",
       "id": 1
     },
     {
-      "description": "2st todo",
+      "description": "item2",
       "category": "javascript",
-      "content": "content for 2st todo",
+      "content": "content2",
       "id": 2
     }
   ]
