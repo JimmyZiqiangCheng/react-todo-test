@@ -3,13 +3,13 @@
     {
       "description": "item1",
       "category": "javascript",
-      "content": "content1",
+      "content": "item1content",
       "id": 1
     },
     {
       "description": "item2",
-      "category": "javascript",
-      "content": "content2",
+      "category": "css",
+      "content": "item2content",
       "id": 2
     }
   ]

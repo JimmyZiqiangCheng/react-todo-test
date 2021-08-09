@@ -1,33 +1,24 @@
-import React,{useState, useEffect} from "react";
+import React,{ useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const TodoDetail = () =>{
+    const [todo, setTodo] = useState({});
     const { id } = useParams();
-    const [todo, setTodo] = useState([]);
-    const [isPending, setIsPending] = useState(true);
-    const url = `http://localhost:8000/todos/${id}`;
-
+    const todos = useSelector((state) => state.todos);
     // fetch data from json server
-    const getTodo = async() =>{
-        try{
-            const res = await fetch(url);
-            const data = await res.json();
-            setTodo(data); 
-            setIsPending(false);
-        }catch (err){
-            console.log(err.message);
-        }
-    }
+    console.log(typeof(todos[0].id))
+    console.log(typeof(id))
+    const cur_todo = todos.filter((todo) => todo.id == id)[0]
 
     // fetch todo items from server on first rendering
     useEffect(()=> {
-        getTodo();
+        setTodo(cur_todo);
     },[]);
 
 
     return (
         <div className = "detailpage">
-            {isPending && <div>Loading...</div>}
             {todo && 
                 <div className = "tododetail">
                     <p>description: {todo.description}</p>

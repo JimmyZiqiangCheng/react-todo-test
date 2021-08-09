@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo } from "../redux/features/todosSlice"
+const Posttodo = () =>{
 
-const Posttodo = ({todos, setUpdatedNeeded}) =>{
-
+    const dispatch = useDispatch();
+    const todos = useSelector(state => state.todos);
     // states store each field of a todo item
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('javascript');
@@ -13,19 +16,11 @@ const Posttodo = ({todos, setUpdatedNeeded}) =>{
         const todoLength = todos.length;
         const newId = todoLength === 0 ? 1:todos[todoLength-1].id+1;
         const todopost = {description: description, category: category, content: content, id: newId};
-        const url = 'http://localhost:8000/todos';
 
-        fetch(url,{
-            method:'POST',
-            headers:{'Content-type':'application/json'},
-            body: JSON.stringify(todopost)
-        }).then(()=>{
-            console.log("new todo added!");
-        })
-        setDescription('');
-        setCategory('javascript');
-        setContent('');
-        setUpdatedNeeded(true);
+        dispatch(addTodo({todo: todopost}))
+        setDescription('')
+        setCategory('javascript')
+        setContent('')
     }
 
     return(
