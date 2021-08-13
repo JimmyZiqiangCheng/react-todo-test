@@ -23,13 +23,10 @@ export const addTodo = (payload) => {
 };
 
 export const deleteTodo = (payload) => {
-    return async (dispatch, getState) => {
-        const response = await fetch(
-            `http://localhost:8000/todos/${payload.id}`,
-            {
-                method: "DELETE",
-            }
-        );
+    return async (dispatch) => {
+        await fetch(`http://localhost:8000/todos/${payload.id}`, {
+            method: "DELETE",
+        });
         dispatch({
             type: actionTypes.DELETE_TODO,
             payload: { id: payload.id },

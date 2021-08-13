@@ -22,27 +22,23 @@ const Todotable = () => {
     }, [dispatch]);
 
     const deleteAll = () => {
-        const tobeDeleted = todos
+        todos
             .filter((todo) => {
                 return todo.selected === true;
             })
             .map((deletedItem) => {
-                return deletedItem.id;
+                return dispatch(deleteTodo({ id: deletedItem.id }));
             });
-
-        tobeDeleted.forEach((deletedId) => {
-            dispatch(deleteTodo({ id: deletedId }));
-        });
     };
 
     // handle the select all behavior
     const handleSelectAll = (checked) => {
-        dispatch(toggleAll({ checked: checked }));
+        dispatch(toggleAll({ checked }));
     };
 
     // handle select individual item
     const handleSelect = (checked, id) => {
-        dispatch(toggleTodo({ checked: checked, id: id }));
+        dispatch(toggleTodo({ checked, id }));
     };
 
     return (
