@@ -1,50 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../redux2/actions/todoActions";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
+
 const Posttodo = () => {
     const dispatch = useDispatch();
     const todos = useSelector((state) => state.todos);
     // states store each field of a todo item
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("javascript");
-    const [content, setContent] = useState("");
+    // const [description, setDescription] = useState("");
+    // const [category, setCategory] = useState("javascript");
+    // const [content, setContent] = useState("");
+
+    //let's try react hook form
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm({
+        criteriaMode: "all",
+    });
 
     // upon pressing the submit button, we create a new todo item and store it to the json server
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const onSubmit = (data) => {
         const todoLength = todos.length;
         const newId = todoLength === 0 ? 1 : todos[todoLength - 1].id + 1;
         const todopost = {
-            description: description,
-            category: category,
-            content: content,
+            description: data.description,
+            category: data.category,
+            content: data.content,
             id: newId,
         };
 
         dispatch(addTodo({ todo: todopost }));
-        setDescription("");
-        setCategory("javascript");
-        setContent("");
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <label>
                 Description:
                 <input
                     type="text"
-                    name="description"
-                    value={description}
-                    onChange={(event) => setDescription(event.target.value)}
-                    required
+                    {...register("description", {
+                        required: "description cannot be empty",
+                    })}
                 />
             </label>
             <label>
                 Category:
-                <select
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
-                >
+                <select {...register("category")}>
                     <option value="javascript">javascript</option>
                     <option value="css">css</option>
                 </select>
@@ -52,12 +56,13 @@ const Posttodo = () => {
             <label>
                 Content:
                 <textarea
-                    name="content"
-                    onChange={(event) => setContent(event.target.value)}
-                    value={content}
+                    {...register("content", {
+                        required: "content cannot be empty",
+                    })}
                     required
                 />
             </label>
+            <ErrorMessage errors={errors} name="inputError" />
             <button>Submit</button>
         </form>
     );
